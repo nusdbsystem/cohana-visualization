@@ -13,3 +13,11 @@ python manage.py runserver 0.0.0.0:8888
 
 check your site at localhost:8888/cohana
 
+
+Please upload your own js to:
+
+mysite/cohana/static/js
+
+And upload your own css to:
+
+mysite/cohana/static/css
