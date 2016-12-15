@@ -1,8 +1,19 @@
 $(document).ready(function () {
+    var popover;
 
-		function renderSecond(e){
-      // console.log(e)
-      $(".collapse").collapse('toggle');
+	function renderSecond(e){
+        var t = e.target;
+        if(popover){
+            popover.popover('destroy');
+        }
+        popover = $(t).popover({
+            html:true, 
+            trigger:'focus', 
+            placement:'bottom', 
+            title:"<b>Example popover</b> - title", 
+            content:'此处应有一张超美的图表', 
+            container:'body'
+        }).popover('show');
     }
 
     Highcharts.chart('container1', {
