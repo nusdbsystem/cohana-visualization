@@ -1,0 +1,14 @@
+{% extends 'cohana/base.html' %}
+{% load static %}
+
+{% block main_content %}
+<div id="panel1" class="collapse" >
+   <div id="container1" style="height: auto; min-width: auto; margin: 0 auto"></div>
+</div>
+<div id="container2" style="height: auto; min-width: 310px; max-width: auto; margin: 0 auto"></div>
+{% endblock %}
+
+{% block custom_js %}
+<script src="{% static 'js/plot_heatmap.js' %}"></script>
+{% endblock %}
+

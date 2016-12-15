@@ -134,3 +134,5 @@ from utils import *
 
 def test(request):
     return render(request, 'cohana/index.html') 
+def dashboard(request):
+    return render(request, 'cohana/heatmap.html') 

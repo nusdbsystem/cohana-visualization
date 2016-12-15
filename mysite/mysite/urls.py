@@ -18,6 +18,6 @@ from django.contrib import admin
 import cohana.urls
 
 urlpatterns = [
-	url(r'^cohana/', include(cohana.urls)),
+    url(r'^cohana/', include(cohana.urls)),
     url(r'^admin/', admin.site.urls),
 ]
