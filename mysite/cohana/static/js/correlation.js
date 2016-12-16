@@ -9,18 +9,20 @@ $(document).ready(function () {
         }
         var col = e.point.x;
         var row = e.point.y;
-        popover = $(t).popover({
+        popover = $(t)
+        .popover({
             html:true, 
             trigger:'focus', 
-            placement:'bottom', 
-            title:"<b>Example popover</b> - title", 
+            placement: 'bottom', 
+            title: 'hello hello hello hello hello',
             content:'<div id="correlation_details" style="height: auto; min-width: auto; margin: 0 auto"></div>', 
-            container:'body'
-        }).on('shown.bs.popover', function () {
+            container:'body'})
+        .on('shown.bs.popover', function () {
             $.getJSON('/cohana/innerchart?row='+row+'&col='+col, function(data) {
                 $('#correlation_details').highcharts(data);
             });
-        }).popover('show');
+            $('.popover').css('top',parseInt($('.popover').css('top')) + $(document).scrollTop() + 'px');})
+        .popover('show');
     }
 
     Highcharts.chart('correlation_overview', {
