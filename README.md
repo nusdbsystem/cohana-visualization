@@ -21,3 +21,9 @@ mysite/cohana/static/js
 And upload your own css to:
 
 mysite/cohana/static/css
+
+Need to decompress data first to plot the diagrams
+```
+cd mysite/cohana
+tar zxf data.tar.gz
+```
