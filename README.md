@@ -1,15 +1,14 @@
-# Dependencies:
+# Dependencies
 
-    Django 1.9
+## Django 1.9
 
 
 # Installation
 
 Decompress data first to plot the diagrams
-```
-cd mysite/cohana
-tar zxf data.tar.gz
-```
+
+    $ cd mysite/cohana
+    $ tar zxf data.tar.gz
 
 To run the server:
 
