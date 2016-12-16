@@ -11,17 +11,24 @@ $(document).ready(function () {
         var row = e.point.y;
         popover = $(t)
         .popover({
+            position: 'fixed',
             html:true, 
             trigger:'focus', 
             placement: 'bottom', 
-            title: 'hello hello hello hello hello',
-            content:'<div id="correlation_details" style="height: auto; min-width: auto; margin: 0 auto"></div>', 
-            container:'body'})
+            template: '<div class="popover" id="popover" role="tooltip"><div class="arrow popover-arrow"></div><h4 class="popover-title"></h4><div class="popover-content""></div></div>',
+            title: 'Correlation Details',
+            content:'<div id="correlation_details" style="max-height: 500px; overflow-y: scroll"></div>', 
+            container:'#panel1'})
         .on('shown.bs.popover', function () {
             $.getJSON('/cohana/innerchart?row='+row+'&col='+col, function(data) {
                 $('#correlation_details').highcharts(data);
             });
-            $('.popover').css('top',parseInt($('.popover').css('top')) + $(document).scrollTop() + 'px');})
+            //var l = parseInt($('.popover').css('left'));
+            //$('.popover').css('left','250px');
+            //console.log(l);
+            //$('.popover-arrow').css('left',l+'px');
+            $('.popover').css('top',parseInt($('.popover').css('top')) + $(document).scrollTop() + 'px');
+        })
         .popover('show');
     }
 

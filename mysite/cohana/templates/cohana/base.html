@@ -44,20 +44,14 @@
 
 
     <body class="nav-md">
-
         <div class="container body">
-
-
             <div class="main_container">
-
                 <div class="col-md-3 left_col">
                     <div class="left_col scroll-view">
-
                         <div class="navbar nav_title" style="border: 0;">
                             <a href="index.html" class="site_title"><i class="fa fa-paw"></i> <span>Gentellela Alela!</span></a>
                         </div>
                         <div class="clearfix"></div>
-
                         <!-- menu prile quick info -->
                         <div class="profile">
                             <div class="profile_pic">
@@ -70,7 +64,6 @@
                         </div>
                         <!-- /menu prile quick info -->
                         <br />
-
                         <!-- sidebar menu -->
                         <div id="sidebar-menu" class="main_menu_side hidden-print main_menu">
                             <div class="menu_section">
@@ -150,7 +143,6 @@
                             </div>
                         </div>
                         <!-- /sidebar menu -->
-
                         <!-- /menu footer buttons -->
                         <div class="sidebar-footer hidden-small">
                             <a data-toggle="tooltip" data-placement="top" title="Settings">
@@ -198,62 +190,44 @@
                                     <li><a href="#">Help</a></li>
                                     <li><a href="#">About us</a></li>
                                 </ul>
-                                
-<ul class="nav navbar-nav navbar-right">
+                                <!--ul class="nav navbar-nav navbar-right">
                                     <li><a href="#"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
                                     <li><a href="#"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
-                                </ul>
-                                
+                                </ul-->
                             </div>
                         </div>
                     </div>
                     <!-- /top navigation -->
                 </div>
-
-
-                    <!-- page content -->
-                    <div class="right_col" role="main">
-
-                        <!-- top tiles -->
-                        <div class="row tile_count">
-                            {% block top_tiles %}{% endblock %}
-                        </div>
-                        <!-- /top tiles -->
-
-                        {% block main_content %}
-                        <div class="row">
-
-                        </div>
-
-                        <div class="row">
-
-                        </div>
-
-                        <div class="row">
-
-                        </div>
-                        {% endblock %}
-
-                        <!-- footer content -->
-
-                        <footer>
-                        <div class="">
-                            <p class="pull-right"> Presented by Shentilium
-                            </p>
-                        </div>
-                        <div class="clearfix"></div>
-                        </footer>
-                        <!-- /footer content -->
+                <!-- page content -->
+                <div class="right_col" role="main">
+                    <!-- top tiles -->
+                    <div class="row tile_count">
+                        {% block top_tiles %}{% endblock %}
                     </div>
-                    <!-- /page content -->
+                    <!-- /top tiles -->
+                    {% block main_content %}
+                    <div class="row">
+                    </div>
+                    <div class="row">
+                    </div>
+                    <div class="row">
+                    </div>
+                    {% endblock %}
 
-
-
-
+                    <!-- footer content -->
+                    <footer>
+                    <div class="">
+                        <p class="pull-right"> Presented by Shentilium
+                        </p>
+                    </div>
+                    <div class="clearfix"></div>
+                    </footer>
+                    <!-- /footer content -->
                 </div>
-
+                <!-- /page content -->
             </div>
-
         </div>
-    </body>
+    </div>
+</body>
 </html>

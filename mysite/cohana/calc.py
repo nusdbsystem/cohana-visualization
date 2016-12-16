@@ -61,10 +61,12 @@ def calc(row, col):
     birth_event2 = tmp[0].split('+')[1].strip()
     out_data = {
         'chart': {
-            'type': 'bar'
+            'type': 'bar',
+            'height': '550',
+            'font': 'Helvetica'
         }, 
         'title': {
-            'text': 'Correlation'
+            'text': 'Correlation' 
         },
         'xAxis': {
             'categories': [],
