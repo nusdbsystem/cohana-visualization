@@ -14,16 +14,16 @@ $(document).ready(function () {
             trigger:'focus', 
             placement:'bottom', 
             title:"<b>Example popover</b> - title", 
-            content:'<div id="container3" style="height: auto; min-width: auto; margin: 0 auto"></div>', 
+            content:'<div id="correlation_details" style="height: auto; min-width: auto; margin: 0 auto"></div>', 
             container:'body'
         }).on('shown.bs.popover', function () {
             $.getJSON('/cohana/innerchart?row='+row+'&col='+col, function(data) {
-                $('#container3').highcharts(data);
+                $('#correlation_details').highcharts(data);
             });
         }).popover('show');
     }
 
-    Highcharts.chart('container2', {
+    Highcharts.chart('correlation_overview', {
         credits: {
           enabled: false,
         },
@@ -39,7 +39,7 @@ $(document).ready(function () {
 
 
         title: {
-          text: 'Retention Rate in One Week',
+          text: null,
           style:{
             fontSize: '28px'
           }
