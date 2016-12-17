@@ -1,30 +1,4 @@
 $(document).ready(function () {
-    var popover;
-
-  	function renderSecond(param){
-        var t = param;
-        console.log(param);
-        if(popover){
-            popover.popover('destroy');
-        }
-//        var col = e.point.x;
-//        var row = e.point.y;
-        popover = $(t)
-        .popover({
-            html:true, 
-            trigger:'focus', 
-            placement: 'bottom', 
-            title: 'hello hello hello hello hello',
-            content:'<div id="correlation_details" style="height: auto; min-width: auto; margin: 0 auto"></div>', 
-            container:'body'})
-        .on('shown.bs.popover', function () {
-            //$.getJSON('/cohana/innerchart?row='+row+'&col='+col, function(data) {
-            //    $('#correlation_details').highcharts(data);
-            //});
-            $('#correlation_details').html("abcdefg");
-            $('.popover').css('top',parseInt($('.popover').css('top')) + $(document).scrollTop() + 'px');})
-        .popover('show');
-    }
 
 var correlation_overview_chart = echarts.init(document.getElementById('correlation_overview'));
 
@@ -159,7 +133,6 @@ max_val= data.reduce(function (x, y) {
 });
 
 option = {
-
     animation: true,
     grid: {
         left: '300px',
@@ -171,8 +144,41 @@ option = {
         position: [1, 1],
         formatter: function (params, ticket, callback) {
             $.getJSON('/cohana/innerchart?row='+params.value[1]+'&col='+params.value[0],
-                      function(data) { $('#correlation_details').highcharts(data); });
-            return '<div id="correlation_details" style="height: auto; min-width: auto; margin: 0 auto">Loading...</div>';
+                      function(data) { 
+                          option = {
+                              title: {
+                                  text: 'Correlation',
+                              },
+                              backgroundColor: 'rgb(255, 255, 255)',
+                              tooltip: {
+                                  trigger: 'axis',
+                                  axisPointer: {
+                                      type: 'shadow'
+                                  }
+                              },
+                              xAxis: {
+                                  position: 'top',
+                                  type: 'value',
+                                  boundaryGap: [0, 0.01]
+                              },
+                              yAxis: {
+                                  nameLocation: 'middle',
+                                  nameGap: 50,
+                                  type: 'category',
+                              },
+                              series: [
+                                  {
+                                      type: 'bar',
+                                  },
+                              ]
+                          };
+                          option.yAxis.name=data.ytitle;
+                          option.yAxis.data=data.ydata;
+                          option.series[0].data=data.xdata;
+                          var inner_chart = echarts.init(document.getElementById('correlation_details'));
+                          inner_chart.setOption(option);
+                      });
+            return '<div id="correlation_details" style="height: 600px; width: 800px; margin: 0 auto">Loading...</div>';
         },
     },
     xAxis: {
@@ -222,12 +228,6 @@ option = {
 
 correlation_overview_chart.setOption(option);
 
-correlation_overview_chart.on('click', function(param) {
-    if (param.componentType == "series") {
-        console.log(param);
-        //renderSecond(param.target);
-    }
-});
 
 
 
