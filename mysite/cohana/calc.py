@@ -52,57 +52,16 @@ def calc_cell(row, col):
             val = rho(a, b ,c, d)
             tmp = key, math.fabs(val)
             res.append(tmp)
-    return file_name, sorted(res, key=lambda x: x[1], reverse=True)
+    return file_name, sorted(res, key=lambda x: x[1])
         
 def calc(row, col):
-    print os.getcwd()
     tmp = calc_cell(row,col)
     birth_event1 = tmp[0].split('+')[0].strip()
     birth_event2 = tmp[0].split('+')[1].strip()
     out_data = {
-        'chart': {
-            'type': 'bar',
-            'height': '550',
-            'font': 'Helvetica'
-        }, 
-        'title': {
-            'text': 'Correlation' 
-        },
-        'xAxis': {
-            'categories': [],
-            'title': {
-                'text': 'No. of Events' + ' (' + birth_event1 + ', ' + birth_event2 + ')'
-            }
-        },
-        'yAxis': {
-            'tickInterval': 0.1,
-    	    'title': None,
-            'opposite': True
-        },
-        'tooltip': {
-            'enabled': True,
-        },
-        'plotOptions': {
-            'bar': {
-                'dataLabels': {
-                    'enabled': False
-                }
-            }
-        },
-        'legend': {
-            'enabled': False,
-        },
-        'credits': {
-            'enabled': False
-        },
-        'series': [{
-            'name': 'Correlation',
-            'data': []
-        }]
+        'ytitle': 'No. of Event (' + birth_event1 + ', ' + birth_event2 + ')',
+        'ydata': map(lambda x: x[0], tmp[1]),
+        'xdata': map(lambda x: x[1], tmp[1]),
     }
-
-    for kv in tmp[1]:
-        out_data['xAxis']['categories'].append(kv[0])
-        out_data['series'][0]['data'].append(kv[1])
 
     return out_data
