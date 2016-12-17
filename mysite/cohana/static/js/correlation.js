@@ -143,42 +143,55 @@ option = {
         triggerOn: 'click',
         position: [1, 1],
         formatter: function (params, ticket, callback) {
+            var bg_width = document.getElementById('correlation_overview').offsetWidth*0.6;
             $.getJSON('/cohana/innerchart?row='+params.value[1]+'&col='+params.value[0],
-                      function(data) { 
-                          option = {
-                              title: {
-                                  text: 'Correlation',
-                              },
-                              backgroundColor: 'rgb(255, 255, 255)',
-                              tooltip: {
-                                  trigger: 'axis',
-                                  axisPointer: {
-                                      type: 'shadow'
-                                  }
-                              },
-                              xAxis: {
-                                  position: 'top',
-                                  type: 'value',
-                                  boundaryGap: [0, 0.01]
-                              },
-                              yAxis: {
-                                  nameLocation: 'middle',
-                                  nameGap: 50,
-                                  type: 'category',
-                              },
-                              series: [
-                                  {
-                                      type: 'bar',
-                                  },
-                              ]
-                          };
-                          option.yAxis.name=data.ytitle;
-                          option.yAxis.data=data.ydata;
-                          option.series[0].data=data.xdata;
-                          var inner_chart = echarts.init(document.getElementById('correlation_details'));
-                          inner_chart.setOption(option);
-                      });
-            return '<div id="correlation_details" style="height: 600px; width: 800px; margin: 0 auto">Loading...</div>';
+                function(data) {
+                    option = {
+                        title: {
+                            text: 'Correlation',
+                        },
+                        grid: {
+                            left: 80,
+                        },
+                        backgroundColor: 'rgb(255, 255, 255)',
+                        tooltip: {
+                            trigger: 'axis',
+                            axisPointer: {
+                                type: 'shadow'
+                            }
+                        },
+                        xAxis: {
+                            position: 'top',
+                            type: 'value',
+                            boundaryGap: [0, 0.01]
+                        },
+                        yAxis: {
+                            nameLocation: 'middle',
+                            nameGap: 50,
+                            type: 'category',
+                        },
+                        series: [
+                            {
+                                type: 'bar',
+                            },
+                        ]
+                    };
+                    option.yAxis.name=data.ytitle;
+                    option.yAxis.data=data.ydata;
+                    option.series[0].data=data.xdata;
+                    var div = document.getElementById('correlation_details');
+                    var div_height = data.ydata.length * 18 + 100;
+                    div.style.height = div_height + 'px';
+                    var inner_chart = echarts.init(div);
+                    inner_chart.setOption(option);});
+            var res = '<div id="correlation_details_background" style="';
+            res += 'max-height: 500px; width: ' + (bg_width+15) + 'px;';
+            res += 'margin: 0 auto; overflow-y: scroll;">';
+            res += '<div id="correlation_details" style="height: 600px; width:'+ bg_width + 'px; margin: 0 auto">';
+            res += 'Loading...';
+            res += '</div></div>';
+
+            return res;
         },
     },
     xAxis: {
