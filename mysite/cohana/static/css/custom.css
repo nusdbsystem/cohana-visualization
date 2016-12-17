@@ -6351,3 +6351,8 @@ ul.notifications {
     max-width: 1000px;
 }
 
+.panel .panel-body .chartpanel{
+    width: inherit;
+    height: 400px;
+    margin: -15px 0px -20px 0px;
+}
