@@ -33,6 +33,15 @@ def dashboard(request):
         l = line.split()
         dauXLabel.append(l[0])
         dauData.append(l[1])
+
+    # deal with map
+    mapData=[]
+    with open('cohana/data/country.dat') as data_file:
+        rawData = json.load(data_file)
+    rawResult = rawData[u'result']
+    for r in rawResult:
+        pair = {'name':r[u'cohort'],'value':r[u'measure']}
+        mapData.append(pair)
         
     # deal with role chart
     with open('cohana/data/role.dat') as data_file:    
@@ -46,13 +55,14 @@ def dashboard(request):
         pair = {'value':r[u'measure'],'name':r[u'cohort']}
         roleData.append(pair)
        
-    print roleLegend 
-    print roleData 
+    #print roleLegend 
+    #print mapData 
     return render(request, 'cohana/dashboard.html',{'continentLegend':
                 json.dumps(continentLegend),
                 'continentData':json.dumps(continentData),
                 'dauXLabel':json.dumps(dauXLabel),
                 'dauData':json.dumps(dauData),
+                'mapData':json.dumps(mapData),
                 'roleLegend':json.dumps(roleLegend),
                 'roleData':json.dumps(roleData)
                 }) 

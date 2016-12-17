@@ -29,7 +29,7 @@
     </div>
     <div class="col-md-6">
         <div id="panel_role" class="panel panel-default panel-container" >
-            <div class="panel-heading"> <h4> User compisition by role </h4></div>
+            <div class="panel-heading"> <h4> User composition by role </h4></div>
             <div class="panel-body">
                 <div id="role" class="chartpanel" ></div>
             </div>
@@ -46,6 +46,7 @@
     var continent_data = {{ continentData|safe }}
     var dau_xlabel = {{ dauXLabel|safe }}
     var dau_data = {{ dauData|safe }}
+    var map_data = {{ mapData|safe }}
     var role_legend = {{ roleLegend|safe  }}
     var role_data = {{ roleData|safe }}
 </script>
