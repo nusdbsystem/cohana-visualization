@@ -6354,5 +6354,9 @@ ul.notifications {
 .panel .panel-body .chartpanel{
     width: inherit;
     height: 400px;
-    margin: -15px 0px -20px 0px;
+    margin: -15px 20px -20px 20px;
+}
+
+.panel .panel-heading {
+    text-align: center;
 }
