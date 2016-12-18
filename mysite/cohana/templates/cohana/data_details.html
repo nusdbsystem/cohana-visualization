@@ -36,10 +36,10 @@
     <div class="col-md-6">
         <div id="panel_role" class="panel panel-default panel-container" >
             <div class="panel-heading"> 
-                <h4> User composition by role </h4>
+                <h4> Event stack in the hottest week </h4>
             </div>
             <div class="panel-body">
-                <div id="role" class="chartpanel" ></div>
+                <div id="event-stack" class="chartpanel" ></div>
             </div>
         </div>
     </div>
@@ -53,9 +53,11 @@
     var event_data = {{ eventData|safe }}
     var sessionAvg_xlabel = {{ sessionAvgXLabel|safe }}
     var sessionAvg_data = {{ sessionAvgData|safe }}
-   // var map_data = {{ mapData|safe }}
     var sessionSca_legend = {{ sessionScaLegend|safe  }}
     var sessionSca_data = {{ sessionScaData|safe }}
+    var eventStack_legend = {{ eventStackLegend|safe }}
+    var eventStack_xlabel = {{ eventStackXLabel|safe }}
+    var eventStack_data = {{ eventStackData|safe }}
 </script>
 <!--script src="{% static 'js/world.js' %}"> </script-->
 <script src="{% static 'js/data_details.js' %}">

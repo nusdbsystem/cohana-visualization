@@ -240,4 +240,91 @@ $(document).ready(function () {
   };
 
   sessionSca.setOption(sessionSca_option);
+
+  var eventStack = echarts.init(document.getElementById('event-stack'));
+  var eventStack_option = {
+    tooltip : {
+        trigger: 'axis'
+    },
+    legend: {
+        top: '3%',
+        right: '3%',
+        data:eventStack_legend
+    },
+    toolbox: {
+        left: '1%',
+        top: '1%',
+        feature: {
+           restore:{
+                title: 'Restore'
+            },
+            dataView: {
+                title: 'DataView',
+                lang: ['DataView', 'Close', 'Refresh']
+            },
+            
+            saveAsImage:{
+                title: 'Save'
+            },
+            magicType: {show:true,
+            type: ['stack', 'bar'],
+            title:
+            {
+                'stack' : 'Change to Line Chart',
+                'bar' : 'Change to Bar Chart'
+            } 
+            },
+        }
+    },
+    xAxis : [
+        {
+            type : 'category',
+            boundaryGap : false,
+            data :eventStack_xlabel
+        }
+    ],
+    yAxis : [
+        {
+            type : 'value',
+            data:[{
+              textStyle:{
+                  align: 'center'
+              }  
+            }]
+        }
+    ],
+    series : [
+        {
+            name:eventStack_legend[0],
+            type:'line',
+            stack: 'total',
+            areaStyle: {normal: {}},
+            data:eventStack_data[0]
+        },
+        {
+            name:eventStack_legend[1],
+            type:'line',
+            stack: 'total',
+            areaStyle: {normal: {}},
+            data:eventStack_data[1]
+        },
+        {
+            name:eventStack_legend[2],
+            type:'line',
+            stack: 'total',
+            areaStyle: {normal: {}},
+            data:eventStack_data[2]
+        },
+        {
+            name:eventStack_legend[3],
+            type:'line',
+            stack: 'total',
+            areaStyle: {normal: {}},
+            data:eventStack_data[3]
+        }
+       
+    ]
+  };
+
+  eventStack.setOption(eventStack_option);
 });

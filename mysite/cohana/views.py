@@ -99,6 +99,12 @@ def data_details(request):
     sessionScaLegend = rawData['legend'] 
     sessionScaData = rawData['data']
 
+    with open('cohana/data/eventByDay.json') as data_file:
+        rawData = json.load(data_file)
+    eventStackXLabel = rawData['label'] 
+    eventStackLegend = rawData['legend'] 
+    eventStackData = rawData['data']
+
     return render(request, 'cohana/data_details.html',
             {
                 'eventData':json.dumps(eventData),
@@ -106,7 +112,10 @@ def data_details(request):
                 'sessionAvgXLabel':json.dumps(sessionAvgXLabel),
                 'sessionAvgData':json.dumps(sessionAvgData),
                 'sessionScaLegend':json.dumps(sessionScaLegend),
-                'sessionScaData':json.dumps(sessionScaData)
+                'sessionScaData':json.dumps(sessionScaData),
+                'eventStackXLabel':json.dumps(eventStackXLabel),
+                'eventStackLegend':json.dumps(eventStackLegend),
+                'eventStackData':json.dumps(eventStackData)
             })
 
 def user_details(request):
