@@ -8,4 +8,5 @@ urlpatterns = [
 	url(r'^dashboard$', views.dashboard, name='dashboard'),
 	url(r'^sample/retention$', views.retention_analysis, name='retention'),
 	url(r'innerchart$', views.innerchart, name='innerchart'),
+	url(r'outerchart$', views.outerchart, name='outerchart'),
 ]
