@@ -30,10 +30,11 @@ $.getJSON('/cohana/outerchart', function(chart_data) {
         return (x[2] > y[2]) ? x[2] : y[2];
     });
 
-    option = {
+    var yAxisLabelLength = 400;
+    var option = {
         animation: true,
         grid: {
-            left: '300px',
+            left: yAxisLabelLength,
         },
         tooltip: {
             show: true,
@@ -44,7 +45,7 @@ $.getJSON('/cohana/outerchart', function(chart_data) {
                 var bg_width = document.getElementById('correlation_overview').offsetWidth*0.6;
                 $.getJSON('/cohana/innerchart?row='+params.value[1]+'&col='+params.value[0],
                     function(data) {
-                        option = {
+                        var option = {
                             title: {
                                 text: 'Correlation',
                             },
@@ -67,6 +68,9 @@ $.getJSON('/cohana/outerchart', function(chart_data) {
                                 nameLocation: 'middle',
                                 nameGap: 50,
                                 type: 'category',
+                                axisLabel: {
+                                    interval: 0,
+                                },
                             },
                             series: [
                                 {
@@ -97,6 +101,12 @@ $.getJSON('/cohana/outerchart', function(chart_data) {
             type: 'category',
             data: xLabels,
             triggerEvent: true,
+            axisLabel: {
+                interval: 0,
+                textStyle: {
+                   fontSize: 15,
+                }
+            },
             splitArea: {
                 show: true
             }
@@ -108,12 +118,18 @@ $.getJSON('/cohana/outerchart', function(chart_data) {
             splitArea: {
                 show: true,
             },
+            z: 2,
             axisLabel: {
+                margin: -yAxisLabelLength,
                 interval: 0,
+                inside: true,
+                textStyle: {
+                   fontSize: 18,
+                }
             },
             axisTick: {
-                length: 300,
-            }
+                length: yAxisLabelLength,
+            },
         },
         visualMap: {
             min: 0,
@@ -149,6 +165,7 @@ $.getJSON('/cohana/outerchart', function(chart_data) {
     var sorted_col = -1;
     var descending = true;
     correlation_overview_chart.on('click', function (params) {
+        console.log(params);
         if (params.componentType == 'xAxis') {
             var series = chart_data.series;
             var col = get_col(xLabels, params.value);
