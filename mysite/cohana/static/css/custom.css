@@ -11,6 +11,7 @@ body.nav-sm .container.body .right_col {
     margin-left: 70px;
     z-index: 2;
 }
+
 .right_col{min-height: 1000px;}
 body.nav-sm .navbar.nav_title {
     width: 70px;
@@ -6342,4 +6343,20 @@ ul.notifications {
     color: #E9EDEF;
     float: right;
     opacity: 1;
+}
+
+.panel .popover {
+    width: 1000px;
+    height: 550px;
+    max-width: 1000px;
+}
+
+.panel .panel-body .chartpanel{
+    width: inherit;
+    height: 400px;
+    margin: -15px 20px -20px 20px;
+}
+
+.panel .panel-heading {
+    text-align: center;
 }
