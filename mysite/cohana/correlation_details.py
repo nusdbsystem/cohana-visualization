@@ -1,6 +1,5 @@
 import math
 import json
-import os
 
 retented_total = 8256
 total = 57077
@@ -54,7 +53,7 @@ def calc_cell(row, col):
             res.append(tmp)
     return file_name, sorted(res, key=lambda x: x[1])
         
-def calc(row, col):
+def correlation_details(row, col):
     tmp = calc_cell(row,col)
     birth_event1 = tmp[0].split('+')[0].strip()
     birth_event2 = tmp[0].split('+')[1].strip()
