@@ -140,7 +140,7 @@ option = {
     tooltip: {
         show: true,
         confine: true,
-        triggerOn: 'click',
+        triggerOn: 'none',
         position: [1, 1],
         formatter: function (params, ticket, callback) {
             var bg_width = document.getElementById('correlation_overview').offsetWidth*0.6;
@@ -241,7 +241,44 @@ option = {
 
 correlation_overview_chart.setOption(option);
 
+last_value = [-1,-1];
+last_doc_scroll = 0;
+last_chart_scroll = 0;
+correlation_overview_chart.on('click', function(param) {
+    if (param.componentType == "series") {
+        if (param.data[0] == last_value[0] && param.data[1] == last_value[1]){
+            last_value = [-1, -1];
+            $('#correlation_overview_background').animate({scrollTop: last_chart_scroll - $(document).scrollTop() + last_doc_scroll}, 1000);
 
+            this.dispatchAction({
+                  type: 'hideTip'
+            });
+            this.dispatchAction({
+                  type: 'downplay',
+                  dataIndex: param.dataIndex
+            });
+        } else {
+            last_chart_scroll = $('#correlation_overview_background').scrollTop();
+            last_doc_scroll = $(document).scrollTop();
+            last_value[0] = param.data[0];
+            last_value[1] = param.data[1];
 
+            scroll_len = param.event.target.shape.y;
+            height = param.event.target.shape.height;
+            doc_scroll_offset = Math.max(0, $(document).scrollTop() - $('#correlation_overview_background').offset().top);
+            
+            $('#correlation_overview_background').animate({scrollTop: scroll_len - doc_scroll_offset}, 1000);
+            this.dispatchAction({
+                  type: 'showTip',
+                  dataIndex: param.dataIndex,
+                  position: [$('#correlation_overview_background').scrollLeft(), scroll_len + height]
+            });
+            this.dispatchAction({
+                  type: 'highlight',
+                  dataIndex: param.dataIndex
+            })
+        }
+    }
+});
 
 });
