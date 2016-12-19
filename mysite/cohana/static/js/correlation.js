@@ -5,13 +5,13 @@ $.getJSON('/cohana/outerchart', function(chart_data) {
         var res = [];
         for (var i = 0; i < data.length; ++i) {
             for (var j = 0; j < data[i].length; ++j) {
-               res.push([j, i, data[i][j]]); 
+               res.push([j, i, data[i][j]]);
             }
         }
         return res;
     }
     function sort_series_on_col(series, col, descending) {
-        return series.sort(function(a, b) { 
+        return series.sort(function(a, b) {
             if (descending)
                 return b.values[col] - a.values[col];
             else
@@ -44,12 +44,16 @@ $.getJSON('/cohana/outerchart', function(chart_data) {
             confine: true,
             triggerOn: 'none',
             formatter: function (params, ticket, callback) {
-                var bg_width = document.getElementById('correlation_overview').offsetWidth*0.6;
+                var bg_width = document.getElementById('correlation_overview').offsetWidth*0.8;
                 $.getJSON('/cohana/innerchart?row='+params.value[1]+'&col='+params.value[0],
                     function(data) {
                         var option = {
                             title: {
-                                text: 'Correlation',
+                                text: 'Correlation between Detailed Behaviors and Retention',
+                                left: 'center',
+                                textStyle: {
+                                    fontSize: 12,
+                                },
                             },
                             grid: {
                                 left: 80,
@@ -64,14 +68,25 @@ $.getJSON('/cohana/outerchart', function(chart_data) {
                             xAxis: {
                                 position: 'top',
                                 type: 'value',
+                                axisLabel: {
+                                    textStyle: {
+                                      fontSize: 15,
+                                    },
+                                },
                                 boundaryGap: [0, 0.01]
                             },
                             yAxis: {
                                 nameLocation: 'middle',
-                                nameGap: 50,
+                                nameGap: 60,
+                                nameTextStyle: {
+                                    fontSize: 12,
+                                },
                                 type: 'category',
                                 axisLabel: {
                                     interval: 0,
+                                    textStyle: {
+                                      fontSize: 15,
+                                    },
                                 },
                             },
                             series: [
@@ -84,16 +99,26 @@ $.getJSON('/cohana/outerchart', function(chart_data) {
                         option.yAxis.data=data.ydata;
                         option.series[0].data=data.xdata;
                         var div = document.getElementById('correlation_details');
-                        var div_height = data.ydata.length * 18 + 100;
+                        var div_height = data.ydata.length * 22 + 100;
                         div.style.height = div_height + 'px';
+                        div.style.width = bg_width * 0.55 +'px';
                         var inner_chart = echarts.init(div);
                         inner_chart.setOption(option);});
-                var res = '<div id="correlation_details_background" style="';
-                res += 'max-height: 500px; width: ' + (bg_width+15) + 'px;';
-                res += 'margin: 0 auto; overflow-y: scroll;">';
-                res += '<div id="correlation_details" style="height: 600px; width:'+ bg_width + 'px; margin: 0 auto">';
-                res += 'Loading...';
+
+                var res = '<div class="container row" style="width:' + bg_width + 'px; margin:0 auto; background-color: white">';
+                res += '<div id="correlation_details_background" class="col-sm-7" style="overflow-y: scroll;height:500px; margin: 10px auto; padding-top: 30px;">';
+                res += '<div id="correlation_details">';
                 res += '</div></div>';
+
+                res += '<div id="description" class="col-sm-5" style="height: 500px; padding-top: 30px; white-space: pre-wrap;">';
+                res += '<p style="color: black; font-size: 18px;">';
+                res += 'For <strong>new users</strong>, how well does  performing each <strong>combination of ';
+                res += 'two behaviors</strong> within the <strong>1st week</strong> of first use predict <strong>2nd week retention</strong>?';
+                res += '</p>';
+                res += '<p style="color: black; font-size: 16px;"><strong>Pearson Correlation: </strong></p>';
+		res += '<br/>';
+                res += '<img src="https://wikimedia.org/api/rest_v1/media/math/render/svg/f76ccfa7c2ed7f5b085115086107bbe25d329cec" ';
+                res += 'style="margin-left: 50px; width: 50%; heigth:50%;" />';
 
                 return res;
             },
@@ -177,7 +202,7 @@ $.getJSON('/cohana/outerchart', function(chart_data) {
     var last_chart_scroll = 0;
     var last_index = -1;
     correlation_overview_chart.on('click', function (params) {
-        // console.log(params);
+        console.log(params);
         if (params.componentType == 'xAxis') {
             var series = chart_data.series;
             var col = get_col(xLabels, params.value);
@@ -194,7 +219,7 @@ $.getJSON('/cohana/outerchart', function(chart_data) {
             option.yAxis.data = yLabels;
             option.series[0].data = series_value;
             correlation_overview_chart.setOption(option);
-        } 
+        }
         else if (params.componentType === "series") {
             if (params.data[0] == last_value[0] && params.data[1] == last_value[1]){
                 last_value = [-1, -1];
