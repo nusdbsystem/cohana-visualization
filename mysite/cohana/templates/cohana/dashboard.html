@@ -6,10 +6,10 @@
     <div class="col-md-6">
         <div id="panel_continent" class="panel panel-default panel-container" >
             <div class="panel-heading"> 
-                <h4> User composition by continent </h4>
+                <h4> Average Session Length </h4>
             </div>
             <div class="panel-body">
-                <div id="continent" class="chartpanel" ></div>
+                <div id="session-avg" class="chartpanel" ></div>
             </div>
         </div>
     </div>
@@ -49,8 +49,8 @@
 
 {% block custom_js %}
 <script>
-    var continent_legend = {{ continentLegend|safe }}
-    var continent_data = {{ continentData|safe }}
+    var sessionAvg_xlabel = {{ sessionAvgXLabel|safe }}
+    var sessionAvg_data = {{ sessionAvgData|safe }}
     var dau_xlabel = {{ dauXLabel|safe }}
     var dau_data = {{ dauData|safe }}
     var map_data = {{ mapData|safe }}

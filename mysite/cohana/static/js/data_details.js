@@ -132,6 +132,7 @@ $(document).ready(function () {
   };
 
   sessionAvg.setOption(sessionAvg_option);
+
   var sessionSca = echarts.init(document.getElementById('session-sca'));
   var sessionSca_option={
       legend: {
