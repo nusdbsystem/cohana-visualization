@@ -15,17 +15,15 @@ def test(request):
     return render(request, 'cohana/index.html') 
 
 def dashboard(request):
-    # deal with continent chart
-    with open('cohana/data/continent.dat') as data_file:    
-        rawData = json.load(data_file)
-    rawResult = rawData[u'result']
-    i = 0
-    continentLegend = []
-    continentData = []
-    for r in rawResult:
-        continentLegend.append(r[u'cohort'])
-        pair = {'value':r[u'measure'],'name':r[u'cohort']}
-        continentData.append(pair)
+    # deal with sessionAvg chart
+    file = open('cohana/data/sessionAverage.dat')
+    sessionAvgXLabel=[]
+    sessionAvgData=[]
+    for line in file:
+        l = line.split()
+        sessionAvgXLabel.append(l[0])
+        sessionAvgData.append(l[1])
+    file.close()
 
     # deal with dau chart
     file = open('cohana/data/dau.dat')
@@ -60,9 +58,9 @@ def dashboard(request):
        
     #print roleLegend 
     #print mapData 
-    return render(request, 'cohana/dashboard.html',{'continentLegend':
-                json.dumps(continentLegend),
-                'continentData':json.dumps(continentData),
+    return render(request, 'cohana/dashboard.html',{
+                'sessionAvgXLabel':json.dumps(sessionAvgXLabel),
+                'sessionAvgData':json.dumps(sessionAvgData),
                 'dauXLabel':json.dumps(dauXLabel),
                 'dauData':json.dumps(dauData),
                 'mapData':json.dumps(mapData),
@@ -119,7 +117,58 @@ def data_details(request):
             })
 
 def user_details(request):
-    return render(request, 'cohana/user_details.html')
+    # deal with continent chart
+    with open('cohana/data/continent.dat') as data_file:    
+        rawData = json.load(data_file)
+    rawResult = rawData[u'result']
+    i = 0
+    continentLegend = []
+    continentData = []
+    for r in rawResult:
+        continentLegend.append(r[u'cohort'])
+        pair = {'value':r[u'measure'],'name':r[u'cohort']}
+        continentData.append(pair)
+
+    # deal with dau chart
+    file = open('cohana/data/dau.dat')
+    dauXLabel=[]
+    dauData=[]
+    for line in file:
+        l = line.split()
+        dauXLabel.append(l[0])
+        dauData.append(l[1])
+    file.close()
+
+    # deal with map
+    mapData=[]
+    with open('cohana/data/country.dat') as data_file:
+        rawData = json.load(data_file)
+    rawResult = rawData[u'result']
+    for r in rawResult:
+        pair = {'name':r[u'cohort'],'value':r[u'measure']}
+        mapData.append(pair)
+        
+    # deal with role chart
+    with open('cohana/data/role.dat') as data_file:    
+        rawData = json.load(data_file)
+    rawResult = rawData[u'result']
+    i = 0
+    roleLegend = []
+    roleData = []
+    for r in rawResult:
+        roleLegend.append(r[u'cohort'])
+        pair = {'value':r[u'measure'],'name':r[u'cohort']}
+        roleData.append(pair)
+       
+    #print roleLegend 
+    #print mapData 
+    return render(request, 'cohana/user_details.html',{'continentLegend':
+                json.dumps(continentLegend),
+                'continentData':json.dumps(continentData),
+                'mapData':json.dumps(mapData),
+                'roleLegend':json.dumps(roleLegend),
+                'roleData':json.dumps(roleData)
+                })
 
 def retention_analysis(request):
     return render(request,

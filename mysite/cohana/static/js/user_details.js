@@ -1,130 +1,73 @@
 $(document).ready(function () {
-  var sessionAvg = echarts.init(document.getElementById('session-avg'));
-  var sessionAvg_option = {
-  tooltip: {
-        trigger: 'axis'
-    },
-    legend: {
-        right: '3%',
-        top: '3%',
-        x: 'right',
-        y: 'top',
-        data:['Average Session Length']
-    },
-    toolbox:{
-        show:true,
-        left: '1%',
-        top: '1%',
-        x : 'left',
-        y : 'top',
-        feature: {
-            restore:{
-                title: 'Restore'
-            },
-            saveAsImage:{
-                title: 'Save'
-            },
-            dataView: {
-                title: 'Dataview',
-                lang: ['DataView', 'Close', 'Refresh']
-            },
-            dataZoom: {
-                yAxisIndex: 'none',
-                title:
-                {
-                    zoom: 'Zoom',
-                    back: 'Back'
-                }
-            },
-            magicType: {
-                type: ['bar', 'line'],
-                title:
-                {
-                    'bar' : 'Change To Bar Chart',
-                    'line' : 'Change To Line Chart'
-                }
-            }        }
-    },
-    xAxis: {
-        type: 'category',
-        boundaryGap: false,
-        data: sessionAvg_xlabel 
-    },
-    yAxis: {
-        type: 'value'
-    },
-    series: [{
-        name: 'Average Session Length',
-        type: 'bar',
-        smooth: true,
-        data: sessionAvg_data 
-    }] 
-  };
-
-  sessionAvg.setOption(sessionAvg_option);
-
   var colors = ['#bdc3c7', '#2ecc71', '#3498db', '#9b59b6', '#34495e',
                 '#f1c40f', '#e67e22', '#e74c3c', '#2980b9', '#95a5a6',
                 '#1abc9c', '#c0392b'];
-
-  var dau = echarts.init(document.getElementById('dau'));  
-  var dau_option = {
-    tooltip: {
-        trigger: 'axis'
-    },
+  for (var i = 0; i < continent_data.length; ++i) {
+    continent_data[i].itemStyle = {normal: {color: colors[i]}};
+  }
+  var continent = echarts.init(document.getElementById('continent'));  
+  var continent_option = {
     legend: {
-        x: 'right',
-        y: 'center',
-        data:['# of users']
-    },
+      orient : 'vertical',
+      x : 'right',
+      y: 'center',
+      data: continent_legend
+     },
     toolbox:{
         show:true,
         x : 'left',
         y : 'top',
-        feature: {
-            restore:{
+        feature:{
+            
+           restore:{
                 title: 'Restore'
             },
-            saveAsImage:{
-                title: 'Save'
-            },
             dataView: {
-                title: 'Dataview',
+                title: 'DataView',
                 lang: ['DataView', 'Close', 'Refresh']
             },
-            dataZoom: {
-                yAxisIndex: 'none',
-                title:
-                {
-                    zoom: 'Zoom',
-                    back: 'Back'
+            
+            saveAsImage:{
+                title: 'Save'
+            }
+        }
+    },
+    series : [
+        {
+            name: 'user composition',
+            type: 'pie',
+            radius: ['0%','75%'],
+            data:continent_data,
+            label: {
+                normal: {
+                    show:false,
+                    textstyle: {
+                        color: 'rgba(255, 255, 255, 0.3)'
+                    }
                 }
             },
-            magicType: {
-                type: ['bar', 'line'],
-                title:
-                {
-                    'bar' : 'Change To Bar Chart',
-                    'line' : 'Change To Line Chart'
+            labelline: {
+                normal: {
+                    show: false,
+                    linestyle: {
+                        color: 'rgba(255, 255, 255, 0.3)'
+                    },
+                    smooth: 0.2,
+                    length: 10,
+                    length2: 20
                 }
-            }        }
-    },
-    xAxis: {
-        type: 'category',
-        boundaryGap: false,
-        data: dau_xlabel 
-    },
-    yAxis: {
-        type: 'value'
-    },
-    series: [{
-        name: '# of users',
-        type: 'line',
-        smooth: true,
-        data: dau_data 
-    }] 
+            }
+        }
+    ],
+    itemstyle: {
+        normal: {
+        shadowblur: 200,
+        shadowcolor: 'rgba(0, 0, 0, 0.5)'
+        }
+    }
   };
-  dau.setOption(dau_option);
+
+  continent.setOption(continent_option);
 
   var map = echarts.init(document.getElementById('map'));  
   var map_option = {
