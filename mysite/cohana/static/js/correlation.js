@@ -27,9 +27,11 @@ $.getJSON('/cohana/outerchart', function(chart_data) {
     var raw_data = chart_data.series.map(function(cell){return cell.values});
     var series_value = gen_data_cell(raw_data);
 
-    max_val= series_value.reduce(function (x, y) {
+    var max_val= series_value.reduce(function (x, y) {
         return (x[2] > y[2]) ? x[2] : y[2];
     });
+
+    max_val *= 1.6;
 
     var yAxisLabelLength = 400;
     var option = {
@@ -175,7 +177,7 @@ $.getJSON('/cohana/outerchart', function(chart_data) {
     var last_chart_scroll = 0;
     var last_index = -1;
     correlation_overview_chart.on('click', function (params) {
-        console.log(params);
+        // console.log(params);
         if (params.componentType == 'xAxis') {
             var series = chart_data.series;
             var col = get_col(xLabels, params.value);
