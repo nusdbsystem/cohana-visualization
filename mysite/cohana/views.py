@@ -35,6 +35,7 @@ def dashboard(request):
         l = line.split()
         dauXLabel.append(l[0])
         dauData.append(l[1])
+    file.close()
 
     # deal with map
     mapData=[]
@@ -68,6 +69,57 @@ def dashboard(request):
                 'roleLegend':json.dumps(roleLegend),
                 'roleData':json.dumps(roleData)
                 }) 
+
+def data_details(request):
+    # deal with event chart
+    file = open('cohana/data/event.dat')
+    eventLegend = []
+    eventData = []
+    for line in file:
+        l = line.split()
+        eventLegend.append(l[0])
+        pair = {'value':l[1], 'name':l[0]}
+        eventData.append(pair)
+    file.close()    
+
+    # deal with sessionAvg chart
+    file = open('cohana/data/sessionAverage.dat')
+    sessionAvgXLabel=[]
+    sessionAvgData=[]
+    for line in file:
+        l = line.split()
+        sessionAvgXLabel.append(l[0])
+        sessionAvgData.append(l[1])
+    file.close()
+    
+    # deal with sessionSca chart
+    rawData = {}
+    with open('cohana/data/sessionLength.json') as data_file:
+        rawData = json.load(data_file)
+    sessionScaLegend = rawData['legend'] 
+    sessionScaData = rawData['data']
+
+    with open('cohana/data/eventByDay.json') as data_file:
+        rawData = json.load(data_file)
+    eventStackXLabel = rawData['label'] 
+    eventStackLegend = rawData['legend'] 
+    eventStackData = rawData['data']
+
+    return render(request, 'cohana/data_details.html',
+            {
+                'eventData':json.dumps(eventData),
+                'eventLegend':json.dumps(eventLegend),
+                'sessionAvgXLabel':json.dumps(sessionAvgXLabel),
+                'sessionAvgData':json.dumps(sessionAvgData),
+                'sessionScaLegend':json.dumps(sessionScaLegend),
+                'sessionScaData':json.dumps(sessionScaData),
+                'eventStackXLabel':json.dumps(eventStackXLabel),
+                'eventStackLegend':json.dumps(eventStackLegend),
+                'eventStackData':json.dumps(eventStackData)
+            })
+
+def user_details(request):
+    return render(request, 'cohana/user_details.html')
 
 def retention_analysis(request):
     return render(request,

@@ -1,0 +1,64 @@
+{% extends 'cohana/base.html' %}
+{% load static %}
+
+{% block main_content %}
+<div class="row">
+    <div class="col-md-6">
+        <div id="panel_continent" class="panel panel-default panel-container" >
+            <div class="panel-heading"> 
+                <h4> User composition by continent </h4>
+            </div>
+            <div class="panel-body">
+                <div id="continent" class="chartpanel" ></div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-6">
+        <div id="panel_dau" class="panel panel-default panel-container" >
+            <div class="panel-heading"> 
+                <h4> Daily Active Users </h4>
+            </div>
+            <div class="panel-body">
+                <div id="dau" class="chartpanel" ></div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-6">
+        <div id="panel_map" class="panel panel-default panel-container" >
+            <div class="panel-heading"> 
+                <h4> User distribution Geo map </h4>
+            </div>
+            <div class="panel-body">
+                <div id="map" class="chartpanel" ></div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-6">
+        <div id="panel_role" class="panel panel-default panel-container" >
+            <div class="panel-heading"> 
+                <h4> User composition by role </h4>
+            </div>
+            <div class="panel-body">
+                <div id="role" class="chartpanel" ></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}
+
+{% block custom_js %}
+<script>
+    var continent_legend = {{ continentLegend|safe }}
+    var continent_data = {{ continentData|safe }}
+    var dau_xlabel = {{ dauXLabel|safe }}
+    var dau_data = {{ dauData|safe }}
+    var map_data = {{ mapData|safe }}
+    var role_legend = {{ roleLegend|safe  }}
+    var role_data = {{ roleData|safe }}
+</script>
+<script src="{% static 'js/world.js' %}"> </script>
+<script src="{% static 'js/dashboard.js' %}">
+</script>
+{% endblock %}
+

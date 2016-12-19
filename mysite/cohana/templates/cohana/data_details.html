@@ -1,0 +1,66 @@
+{% extends 'cohana/base.html' %}
+{% load static %}
+
+{% block main_content %}
+<div class="row">
+    <div class="col-md-6">
+        <div id="panel_continent" class="panel panel-default panel-container" >
+            <div class="panel-heading"> 
+                <h4> Events Statistics </h4>
+            </div>
+            <div class="panel-body">
+                <div id="events" class="chartpanel" ></div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-6">
+        <div id="panel_dau" class="panel panel-default panel-container" >
+            <div class="panel-heading"> 
+                <h4> Average Session Length </h4>
+            </div>
+            <div class="panel-body">
+                <div id="session-avg" class="chartpanel" ></div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-6">
+        <div id="panel_map" class="panel panel-default panel-container" >
+            <div class="panel-heading"> 
+                <h4> Roles, session length and user costs </h4>
+            </div>
+            <div class="panel-body">
+                <div id="session-sca" class="chartpanel" ></div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-6">
+        <div id="panel_role" class="panel panel-default panel-container" >
+            <div class="panel-heading"> 
+                <h4> Event stack in the hottest week </h4>
+            </div>
+            <div class="panel-body">
+                <div id="event-stack" class="chartpanel" ></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}
+
+{% block custom_js %}
+<script>
+    var event_legend = {{ eventLegend|safe }}
+    var event_data = {{ eventData|safe }}
+    var sessionAvg_xlabel = {{ sessionAvgXLabel|safe }}
+    var sessionAvg_data = {{ sessionAvgData|safe }}
+    var sessionSca_legend = {{ sessionScaLegend|safe  }}
+    var sessionSca_data = {{ sessionScaData|safe }}
+    var eventStack_legend = {{ eventStackLegend|safe }}
+    var eventStack_xlabel = {{ eventStackXLabel|safe }}
+    var eventStack_data = {{ eventStackData|safe }}
+</script>
+<!--script src="{% static 'js/world.js' %}"> </script-->
+<script src="{% static 'js/data_details.js' %}">
+</script>
+{% endblock %}
+
