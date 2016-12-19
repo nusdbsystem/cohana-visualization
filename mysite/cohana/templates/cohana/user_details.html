@@ -14,16 +14,6 @@
         </div>
     </div>
     <div class="col-md-6">
-        <div id="panel_dau" class="panel panel-default panel-container" >
-            <div class="panel-heading"> 
-                <h4> Daily Active Users </h4>
-            </div>
-            <div class="panel-body">
-                <div id="dau" class="chartpanel" ></div>
-            </div>
-        </div>
-    </div>
-    <div class="col-md-6">
         <div id="panel_map" class="panel panel-default panel-container" >
             <div class="panel-heading"> 
                 <h4> User distribution Geo map </h4>
@@ -51,14 +41,12 @@
 <script>
     var continent_legend = {{ continentLegend|safe }}
     var continent_data = {{ continentData|safe }}
-    var dau_xlabel = {{ dauXLabel|safe }}
-    var dau_data = {{ dauData|safe }}
     var map_data = {{ mapData|safe }}
     var role_legend = {{ roleLegend|safe  }}
     var role_data = {{ roleData|safe }}
 </script>
 <script src="{% static 'js/world.js' %}"> </script>
-<script src="{% static 'js/dashboard.js' %}">
+<script src="{% static 'js/user_details.js' %}">
 </script>
 {% endblock %}
 

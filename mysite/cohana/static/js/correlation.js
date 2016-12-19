@@ -223,8 +223,8 @@ $.getJSON('/cohana/outerchart', function(chart_data) {
         else if (params.componentType === "series") {
             if (params.data[0] == last_value[0] && params.data[1] == last_value[1]){
                 last_value = [-1, -1];
-                scroll_top(correlation_overview_background, last_chart_scroll - $(document).scrollTop() + last_doc_scroll, 1000);
-
+                scroll_top(correlation_overview_background, last_chart_scroll - $(document).scrollTop() + last_doc_scroll, 500);
+                
                 this.dispatchAction({
                       type: 'hideTip'
                 });
@@ -241,13 +241,14 @@ $.getJSON('/cohana/outerchart', function(chart_data) {
                 var scroll_len = params.event.target.shape.y;
                 var height = params.event.target.shape.height;
                 var doc_scroll_offset = Math.max(0, $(document).scrollTop() - correlation_overview_background.offset().top);
-
-                scroll_top(correlation_overview_background, scroll_len - doc_scroll_offset, 1000);
+                
+                scroll_top(correlation_overview_background, scroll_len - doc_scroll_offset, 500);
                 // correlation_overview_background.animate({scrollTop: scroll_len - doc_scroll_offset}, 1000);
                 this.dispatchAction({
                       type: 'showTip',
                       dataIndex: params.dataIndex,
-                      position: [Math.max(correlation_overview_background.width()/2, correlation_overview_background.scrollLeft()), scroll_len + height]
+                      //position: [Math.max(correlation_overview_background.width()/2, correlation_overview_background.scrollLeft()), scroll_len + height]
+                      position: ['25%',scroll_len+height]
                 });
                 this.dispatchAction({
                     type: 'downplay',
