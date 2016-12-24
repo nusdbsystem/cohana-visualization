@@ -1,4 +1,5 @@
 import requests
+import re
 import json
 
 def pass_request(query):
@@ -19,11 +20,11 @@ def get_plotdata(result):
     legend = []
     data = []
     for r in rawResult:
-        legend.append(r[u'cohort'])
-        pair = {'value':r[u'measure'],'name':r[u'cohort']}
+        name = re.findall(r"\((.+?)\)",r[u'cohort'])[0]
+        legend.append(name)
+        pair = {'value':r[u'measure'],'name':name}
         data.append(pair)
     ret = {'Legend': legend,'Data': data}
     #print ret
     return ret
-
 

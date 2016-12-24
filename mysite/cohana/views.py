@@ -185,17 +185,13 @@ def profiling(request):
             query = json.load(f)
     if(column == 'continent'):
         query[u'birthSequence'][u'birthEvents'][0][u'cohortFields'][0][u'field'] = u'continent'
-        #print query
-        result = pass_request(query)
-        #print result
-        ret = get_plotdata(result)
-        #print ret
+    elif (column == 'role'):
+        query[u'birthSequence'][u'birthEvents'][0][u'cohortFields'][0][u'field'] = u'role'
+      
+    result = pass_request(query)
+    ret = get_plotdata(result)
         
-        return JsonResponse(ret)
-
-
-    return render(request,'cohana/user_details.html')
-    
+    return JsonResponse(ret)
 
 def innerchart(request):
     row = int(request.GET.get('row', 0));

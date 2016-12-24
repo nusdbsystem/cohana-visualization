@@ -9,13 +9,13 @@ $(document).ready(function () {
   $.getJSON('cohana/profiling?by=continent',
     function(continent_data){
         console.log(continent_data);
-    });
   var continent_option = {
     legend: {
       orient : 'vertical',
       x : 'right',
       y: 'center',
-      data: continent_legend
+     // data: continent_legend
+      data: continent_data.Legend
      },
     toolbox:{
         show:true,
@@ -41,7 +41,8 @@ $(document).ready(function () {
             name: 'user composition',
             type: 'pie',
             radius: ['0%','75%'],
-            data:continent_data,
+            //data:continent_data,
+            data:continent_data.Data,
             label: {
                 normal: {
                     show:false,
@@ -73,6 +74,7 @@ $(document).ready(function () {
 
   continent.setOption(continent_option);
 
+    });
   var map = echarts.init(document.getElementById('map'));  
   var map_option = {
         title: {
