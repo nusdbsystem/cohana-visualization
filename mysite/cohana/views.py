@@ -1,8 +1,10 @@
 from django.shortcuts import render
 from django.http import HttpResponse
 from django.http import JsonResponse
+from django.conf import settings
 import json
 import os
+from .utils.request_bypass import *
 from .utils.correlation_details import correlation_details
 from .utils.correlation_overview import correlation_overview
 
@@ -173,6 +175,27 @@ def user_details(request):
 def retention_analysis(request):
     return render(request,
             'cohana/correlation.html') 
+
+def profiling(request):
+    if request.method == 'POST':
+        return 0
+    print settings.BASE_DIR
+    column = request.GET.get('by','')
+    with open(settings.BASE_DIR+'/cohana/queries/profiling.json') as f:
+            query = json.load(f)
+    if(column == 'continent'):
+        query[u'birthSequence'][u'birthEvents'][0][u'cohortFields'][0][u'field'] = u'continent'
+        #print query
+        result = pass_request(query)
+        #print result
+        ret = get_plotdata(result)
+        #print ret
+        
+        return JsonResponse(ret)
+
+
+    return render(request,'cohana/user_details.html')
+    
 
 def innerchart(request):
     row = int(request.GET.get('row', 0));

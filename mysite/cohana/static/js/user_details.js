@@ -6,6 +6,10 @@ $(document).ready(function () {
     continent_data[i].itemStyle = {normal: {color: colors[i]}};
   }
   var continent = echarts.init(document.getElementById('continent'));  
+  $.getJSON('cohana/profiling?by=continent',
+    function(continent_data){
+        console.log(continent_data);
+    });
   var continent_option = {
     legend: {
       orient : 'vertical',

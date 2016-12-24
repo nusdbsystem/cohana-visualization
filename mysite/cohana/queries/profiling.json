@@ -1,0 +1,28 @@
+{
+    "dataSource" : "sogamo",
+    "birthSequence" : { 
+        "birthEvents" : [{
+            "minTrigger" : 1,
+            "maxTrigger" : -1,
+            "eventSelection" : [{
+                "fieldValue" : {
+                    "type" : "AbsoluteValue",
+                    "values" : [ "launch" ],
+                    "baseField" : null,
+                    "baseEvent" : -1
+                },
+                "cubeField" : "event",
+                "filterType" : "Set"
+            }],
+            "cohortFields" : [{
+                "field" : ""
+            }]
+        }]
+    },
+    "ageField" : {
+        "field" : "DAY",
+        "ageInterval" : 1,
+        "range" : [ "0|0" ]
+    },
+    "measure" : "Retention"
+}
