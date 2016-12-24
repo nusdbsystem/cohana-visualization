@@ -180,6 +180,51 @@ $(document).ready(function () {
   }
 
   var role = echarts.init(document.getElementById('role'));  
+
+  function convert_to_bar_button(chart) {
+      return {
+          show: true,
+          title: 'Change to Bar Chart',
+          icon: 'image:///static/images/pie_bar.png',
+          onclick: function () {
+              var oldOption = chart.getOption();
+              var newOption = jQuery.extend(true, {}, oldOption);
+
+              newOption.toolbox[0].feature.myConvert.title = 'Change to Pie';
+              newOption.toolbox[0].feature.myConvert.onclick = function() { 
+                 chart.clear();
+                 chart.setOption(oldOption);
+              };
+
+              var series_data = newOption.series[0].data;
+              var bar_category = series_data.map(function(x){return x.name});
+              var bar_value = series_data.map(function(x){
+                  return {
+                      value: x.value,
+                      itemStyle: x.itemStyle
+                  };
+              });
+
+              newOption.xAxis = {
+                  type: 'category',
+                  data: bar_category,
+                  axisLabel: {
+                      interval: 0,
+                  },
+              };
+              newOption.yAxis = {
+                  type: 'value',
+              };
+              newOption.series = [{
+                  type:'bar',
+                  data: bar_value,
+              }];
+              chart.clear();
+              chart.setOption(newOption);
+          }
+      }
+  }
+
   var role_option = {
     legend: {
       orient : 'vertical',
@@ -192,7 +237,7 @@ $(document).ready(function () {
         x : 'left',
         y : 'top',
         feature:{
-            
+           myConvert: convert_to_bar_button(role),
            restore:{
                 title: 'Restore'
             },
@@ -233,5 +278,6 @@ $(document).ready(function () {
   };
 
   role.setOption(role_option);
+  var testing = role.getOption();
 
 });
