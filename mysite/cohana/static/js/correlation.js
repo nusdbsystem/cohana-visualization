@@ -263,5 +263,17 @@ $.getJSON('/cohana/outerchart', function(chart_data) {
         }
     });
 
+    var three_d_data = [{z: chart_data.matrix, showscale: false, type: 'surface', x: chart_data.subXLabels, y: chart_data.subYLabels}]
+
+    var layout = {
+      autosize: true,
+      xaxis: {
+        type: 'category'
+      },
+      yaxis: {
+        type: 'category'
+      }
+    };
+    Plotly.newPlot('3d_correlation', three_d_data, layout);
 });
 });
