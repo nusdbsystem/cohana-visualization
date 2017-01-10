@@ -263,5 +263,29 @@ $.getJSON('/cohana/outerchart', function(chart_data) {
         }
     });
 
+    var colors = ["#440154","#482878","#3E4A89","#31688E","#26838E","#1F9D89","#35B779","#6CCE59","#B4DD2C","#FDE725"]
+    color_scale = []
+    for (i = 0; i < colors.length; ++i){
+        color_scale[i] = [1 * i / (colors.length-1), colors[i]]
+    }
+
+    var three_d_data = [{z: chart_data.matrix, 
+        showscale: false, 
+        type: 'surface',
+        colorscale: color_scale,
+        x: chart_data.subXLabels, 
+        y: chart_data.subYLabels}]
+
+    var layout = {
+      autosize: true,
+      xaxis: {
+        type: 'category'
+      },
+      yaxis: {
+        type: 'category'
+      },
+      // cameraposition: [[0.2, 0.5, 0.5, 0.2], [0, 0, 0], 4.8],
+    };
+    Plotly.newPlot('3d_correlation', three_d_data, layout);
 });
 });
