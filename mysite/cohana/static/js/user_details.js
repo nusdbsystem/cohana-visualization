@@ -5,7 +5,7 @@ $(document).ready(function () {
   for (var i = 0; i < continent_data.length; ++i) {
     continent_data[i].itemStyle = {normal: {color: colors[i]}};
   }
-  var continent = echarts.init(document.getElementById('continent'));  
+  var user_composition = echarts.init(document.getElementById('user-composition'));  
   var continent_option = {
     legend: {
       orient : 'vertical',
@@ -67,7 +67,7 @@ $(document).ready(function () {
     }
   };
 
-  continent.setOption(continent_option);
+  user_composition.setOption(continent_option);
 
   var map = echarts.init(document.getElementById('map'));  
   var map_option = {
@@ -176,5 +176,18 @@ $(document).ready(function () {
   };
 
   role.setOption(role_option);
+
+  $('#by-continent').on('click', function(){
+    user_composition.clear();
+    user_composition.setOption(continent_option);
+    $('#by').text("By Continent");
+
+  });
+
+  $('#by-role').on('click', function(){
+    user_composition.clear();
+    user_composition.setOption(role_option);
+    $('#by').text("By Role");
+  });
 
 });
