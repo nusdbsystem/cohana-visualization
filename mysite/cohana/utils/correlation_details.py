@@ -1,8 +1,8 @@
 import math
 import json
 
-retented_total = 8256
-total = 57077
+retented_total = 73925 
+total = 157077
 index_file = "cohana/data/index"
 data_file_path = "cohana/data/"
 

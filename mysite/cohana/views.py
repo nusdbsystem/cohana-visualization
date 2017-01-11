@@ -59,6 +59,7 @@ def dashboard(request):
         roleData.append(pair)
        
     #print roleLegend 
+    print roleData
     #print mapData 
     return render(request, 'cohana/dashboard.html',{
                 'sessionAvgXLabel':json.dumps(sessionAvgXLabel),

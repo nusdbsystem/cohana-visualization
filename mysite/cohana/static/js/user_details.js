@@ -102,8 +102,8 @@ $(document).ready(function () {
         }
     },
     visualMap: {
-        min: 0,
-        max: 4000,
+        min: 000,
+        max: 5000,
         text:['High','Low'],
         realtime: false,
         calculable: true,
