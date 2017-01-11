@@ -7,20 +7,20 @@
         <div id="panel_continent" class="panel panel-default panel-container" >
             <div class="panel-heading"> 
                 <h2> User composition 
-                <ul class="nav navbar-right panel_toolbox">
-                    <li class="dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="true">
-                       <span> By </span><i class="fa fa-chevron-down"></i> </a>
-                    <ul class="dropdown-menu" role="menu">
-                        <li><a href="#">continent</a>
-                        </li>
-                        <li><a href="#">role</a>
-                        </li>
-                    </ul>
+                    <ul class="nav navbar-right panel_toolbox">
+                        <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="true">
+                            <span id="by"> By </span><i class="fa fa-chevron-down"></i> </a>
+                        <ul class="dropdown-menu" role="menu">
+                            <li><a id='by-continent' href="#">continent</a>
+                            </li>
+                            <li><a id='by-role' href="#">role</a>
+                            </li>
+                        </ul>
                 </ul></h2>
             </div>
             <div class="panel-body">
-                <div id="continent" class="chartpanel" ></div>
+                <div id="user-composition" class="chartpanel" ></div>
             </div>
         </div>
     </div>
@@ -45,7 +45,6 @@
         </div>
     </div>
 </div>
-
 {% endblock %}
 
 {% block custom_js %}

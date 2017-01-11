@@ -32,6 +32,8 @@ def calc_row(file_name):
             b = birth_total - a
             c = retented_total - a
             d = total - a - b - c
+            # values.append(round((total * a - birth_total * retented_total)
+            #     / math.sqrt(retented_total * birth_total * (total - retented_total) * (total - birth_total)), 3))
             values.append(rho(a, b, c, d))
 
     return { 'yLabel': file_name.strip(), 'values': values};
@@ -39,8 +41,12 @@ def calc_row(file_name):
 def correlation_overview():
     xLabels = ['1 day', '2 days', '3 days', '4 days', '5 days', '6 days', '7 days'];
     series = [];
-    for file_name in open(index_file):
-        series.append(calc_row(file_name))
-    out_data = {'xLabels': xLabels, 'series': series}
+    series = [calc_row(file_name) for file_name in open(index_file)]
+ 
+    values_dic = dict([(tuple(value['yLabel'].split('+')), value['values']) for value in series])
+    x_label, y_label = zip(*[value for value in values_dic])
 
-    return out_data
+    x_label = list(set(x_label))
+    y_label = list(set(y_label))
+    matrix = [[(values_dic[(x,y)][-1] if (x,y) in values_dic else 0) for x in x_label] for y in y_label]
+    return {'xLabels': xLabels, 'series': series, 'subXLabels': x_label, 'subYLabels': y_label, 'matrix': matrix}

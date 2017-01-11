@@ -72,7 +72,7 @@ $(document).ready(function () {
     }
   };
 
-  continent.setOption(continent_option);
+  user_composition.setOption(continent_option);
 
     });
   var map = echarts.init(document.getElementById('map'));  
@@ -182,5 +182,18 @@ $(document).ready(function () {
   };
 
   role.setOption(role_option);
+
+  $('#by-continent').on('click', function(){
+    user_composition.clear();
+    user_composition.setOption(continent_option);
+    $('#by').text("By Continent");
+
+  });
+
+  $('#by-role').on('click', function(){
+    user_composition.clear();
+    user_composition.setOption(role_option);
+    $('#by').text("By Role");
+  });
 
 });
