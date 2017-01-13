@@ -290,7 +290,6 @@ $.getJSON('/cohana/outerchart', function(chart_data) {
       yaxis: {
         type: 'category'
       },
-      // cameraposition: [[0.2, 0.5, 0.5, 0.2], [0, 0, 0], 4.8],
     };
     Plotly.newPlot('3d_correlation', three_d_data, layout);
 });

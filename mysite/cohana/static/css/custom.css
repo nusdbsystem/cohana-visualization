@@ -6360,3 +6360,11 @@ ul.notifications {
 .panel .panel-heading {
     text-align: center;
 }
+
+#eventslider .slider-selection {
+    background: #337ab7;
+}
+
+#eventslider .slider-track-high{
+    background: #BABABA;
+}

@@ -1,0 +1,62 @@
+{% extends 'cohana/base.html' %}
+{% load static %}
+
+{% block main_content %}
+
+<div class="row">
+    <div id="panel_role" class="panel panel-default panel-container" >
+        <div class="panel-heading">
+            <h3> Loyal User Detection </h3>
+        </div>
+        <div class="panel-body">
+            <div class="panel-group" id="accordion">
+                <h4> Definition : Loyal users are users who perform at least  
+                    <button id="event-num" data-toggle="collapse" 
+                        href="#rangeslider1" data-parent="#accordion"
+                        class="btn">3</button>
+                    events in the consecutive 
+                    <button id="day-num" data-toggle="collapse" 
+                        href="#rangeslider2" data-parent="#accordion"
+                        class="btn">7</button> 
+                    days</h4>
+                <div id="rangeslider1" class="collapse"> 
+                    <h5> Select # of events </h5>
+                    <input style="width:30% left:10%"
+                    data-slider-id="eventslider" id="event-slider" type="text"
+                    data-provide="slider"
+                    data-slider-min="0"
+                    data-slider-max="20"
+                    data-slider-step="1"
+                    data-slider-value="3"
+                    data-slider-tooltip="hide"/>
+                </div>
+                <div id="rangeslider2" class="collapse"> 
+                    <h5> Select # of days </h5>
+                    <input style="width:30% left:10%"
+                    data-slider-id="eventslider" id="day-slider" type="text"
+                    data-provide="slider"
+                    data-slider-min="0"
+                    data-slider-max="32"
+                    data-slider-step="1"
+                    data-slider-value="7"
+                    data-slider-tooltip="hide" />
+                </div>
+            </div>
+            <div id="loyal_usr_stack" class="chartpanel" >  </div>
+        </div> 
+    </div>
+</div>
+
+{% endblock %}
+
+{% block custom_js %}
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-slider/9.7.0/bootstrap-slider.js"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-slider/9.7.0/css/bootstrap-slider.css">
+<script>
+    var loyaltyStack_legend = {{ loyaltyStackLegend|safe }}
+    var loyaltyStack_xlabel = {{ loyaltyStackXlabel|safe }}
+    var loyaltyStack_data = {{ loyaltyStackData|safe }}
+</script>
+<script src="{% static 'js/loyal_usr_detection.js' %}">
+</script>
+{% endblock %}
