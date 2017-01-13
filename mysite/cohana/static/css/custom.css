@@ -6360,3 +6360,13 @@ ul.notifications {
 .panel .panel-heading {
     text-align: center;
 }
+
+#GREY .slider-selection {
+    background: #D3D3D3 ;
+}
+#GREY .slider-handle {
+    background: #A9A9A9;
+}
+#GREY .slider-tick {
+    background: #D3D3D3;
+}

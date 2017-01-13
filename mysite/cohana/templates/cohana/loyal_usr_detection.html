@@ -1,0 +1,58 @@
+{% extends 'cohana/base.html' %}
+{% load static %}
+
+{% block main_content %}
+
+<div class="row">
+	<div class="col-md-6">
+        <div id="panel_role" class="panel panel-default panel-container" >
+            <div class="panel-heading">
+            		<!-- <div class="row"> -->
+	                	<h4> Loyal user: users who perform <span id="event-num">3</span> events in <span id="day-num">3</span> days</h4>
+	                <!-- </div> -->
+
+	               <!--  <div class="row"> 
+		                <div class="col-md-3"> -->
+			                <input style="width:30% left:10%" data-slider-id="GREY" id="event-slider" type="text"
+					              data-provide="slider"
+					              data-slider-ticks="[1, 2, 3]"
+					              data-slider-ticks-labels='["big", "biig", "biiig"]'
+					              data-slider-min="1"
+					              data-slider-max="3"
+					              data-slider-step="1"
+					              data-slider-value="3"
+					              data-slider-tooltip="hide" />
+					  <!--   </div>
+		                <div class="col-md-3"> -->
+			                <input style="width:30% right:10%" data-slider-id="GREY" id="day-slider" type="text"
+					              data-provide="slider"
+					              data-slider-ticks="[1, 2, 3]"
+					              data-slider-ticks-labels='["small", "smaall", "smaaall"]'
+					              data-slider-min="1"
+					              data-slider-max="3"
+					              data-slider-step="1"
+					              data-slider-value="3"
+					              data-slider-tooltip="hide" />
+				       <!--  </div>
+			        </div> -->
+            </div>
+            <div class="panel-body">
+                <div id="loyal_usr_stack" class="chartpanel" ></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}
+
+{% block custom_js %}
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-slider/9.7.0/bootstrap-slider.js"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-slider/9.7.0/css/bootstrap-slider.css">
+<script>
+    var loyaltyStack_legend = {{ loyaltyStackLegend|safe }}
+    var loyaltyStack_xlabel = {{ loyaltyStackXlabel|safe }}
+    var loyaltyStack_data = {{ loyaltyStackData|safe }}
+</script>
+<script src="{% static 'js/loyal_usr_detection.js' %}">
+</script>
+{% endblock %}

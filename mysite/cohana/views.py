@@ -181,3 +181,20 @@ def innerchart(request):
 
 def outerchart(request):
     return JsonResponse(correlation_overview.correlation_overview());
+
+def loyal_usr_detection(request):    
+    # deal with sessionSca chart
+    rawData = {}
+
+    with open('cohana/data/eventByDay.json') as data_file:
+        rawData = json.load(data_file)
+    loyaltyStackLegend = rawData['label'] 
+    eventStackLegend = rawData['legend'] 
+    eventStackData = rawData['data']
+
+    return render(request, 'cohana/loyal_usr_detection.html',
+            {
+                'loyaltyStackLegend':json.dumps(loyaltyStackLegend),
+                'loyaltyStackXlabel':json.dumps(eventStackLegend),
+                'loyaltyStackData':json.dumps(eventStackData)
+            })
