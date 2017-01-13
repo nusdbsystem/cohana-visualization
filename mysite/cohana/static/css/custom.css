@@ -6361,12 +6361,10 @@ ul.notifications {
     text-align: center;
 }
 
-#GREY .slider-selection {
-    background: #D3D3D3 ;
+#eventslider .slider-selection {
+    background: #337ab7;
 }
-#GREY .slider-handle {
-    background: #A9A9A9;
-}
-#GREY .slider-tick {
-    background: #D3D3D3;
+
+#eventslider .slider-track-high{
+    background: #BABABA;
 }

@@ -31,7 +31,13 @@ $.getJSON('/cohana/outerchart', function(chart_data) {
         return (x[2] > y[2]) ? x[2] : y[2];
     });
 
-    max_val *= 1.6;
+    max_val *= 1;
+
+    var min_val= series_value.reduce(function (x, y) {
+        return (x[2] < y[2]) ? x[2] : y[2];
+    });
+
+    min_val *= 1;
 
     var yAxisLabelLength = 400;
     var option = {
@@ -159,8 +165,8 @@ $.getJSON('/cohana/outerchart', function(chart_data) {
             },
         },
         visualMap: {
-            min: 0,
-            max: max_val,
+            min: -0.5,
+            max: 1,
             calculable: true,
             show: false,
         },

@@ -5,13 +5,17 @@ $(document).ready(function () {
   for (var i = 0; i < continent_data.length; ++i) {
     continent_data[i].itemStyle = {normal: {color: colors[i]}};
   }
-  var user_composition = echarts.init(document.getElementById('user-composition'));  
+  var continent = echarts.init(document.getElementById('continent'));  
+  $.getJSON('cohana/profiling?by=continent',
+    function(continent_data){
+        console.log(continent_data);
   var continent_option = {
     legend: {
       orient : 'vertical',
       x : 'right',
       y: 'center',
-      data: continent_legend
+     // data: continent_legend
+      data: continent_data.Legend
      },
     toolbox:{
         show:true,
@@ -37,7 +41,8 @@ $(document).ready(function () {
             name: 'user composition',
             type: 'pie',
             radius: ['0%','75%'],
-            data:continent_data,
+            //data:continent_data,
+            data:continent_data.Data,
             label: {
                 normal: {
                     show:false,
@@ -69,6 +74,7 @@ $(document).ready(function () {
 
   user_composition.setOption(continent_option);
 
+    });
   var map = echarts.init(document.getElementById('map'));  
   var map_option = {
         title: {
@@ -96,8 +102,8 @@ $(document).ready(function () {
         }
     },
     visualMap: {
-        min: 0,
-        max: 4000,
+        min: 000,
+        max: 5000,
         text:['High','Low'],
         realtime: false,
         calculable: true,

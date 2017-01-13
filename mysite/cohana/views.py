@@ -1,8 +1,10 @@
 from django.shortcuts import render
 from django.http import HttpResponse
 from django.http import JsonResponse
+from django.conf import settings
 import json
 import os
+from .utils.request_bypass import *
 from .utils.correlation_details import correlation_details
 from .utils.correlation_overview import correlation_overview
 
@@ -57,6 +59,7 @@ def dashboard(request):
         roleData.append(pair)
        
     #print roleLegend 
+    print roleData
     #print mapData 
     return render(request, 'cohana/dashboard.html',{
                 'sessionAvgXLabel':json.dumps(sessionAvgXLabel),
@@ -173,6 +176,23 @@ def user_details(request):
 def retention_analysis(request):
     return render(request,
             'cohana/correlation.html') 
+
+def profiling(request):
+    if request.method == 'POST':
+        return 0
+    print settings.BASE_DIR
+    column = request.GET.get('by','')
+    with open(settings.BASE_DIR+'/cohana/queries/profiling.json') as f:
+            query = json.load(f)
+    if(column == 'continent'):
+        query[u'birthSequence'][u'birthEvents'][0][u'cohortFields'][0][u'field'] = u'continent'
+    elif (column == 'role'):
+        query[u'birthSequence'][u'birthEvents'][0][u'cohortFields'][0][u'field'] = u'role'
+      
+    result = pass_request(query)
+    ret = get_plotdata(result)
+        
+    return JsonResponse(ret)
 
 def innerchart(request):
     row = int(request.GET.get('row', 0));

@@ -86,13 +86,13 @@ $(document).ready(function () {
 
   loyaltyStack.setOption(loyaltyStack_option);
 
-	$("#event-slider").slider()
-	$("#event-slider").on("slide", function(slideEvt) {
-		$("#event-num").text(slideEvt.value);
+	$('#event-slider').slider({value:3});
+	$('#event-slider').on('slide', function(slideEvt) {
+		$('#event-num').text(slideEvt.value);
 	});	
-	$("#day-slider").slider()
-	$("#day-slider").on("slide", function(slideEvt) {
-		$("#day-num").text(slideEvt.value);
+	$('#day-slider').slider({value:3});
+	$('#day-slider').on('slide', function(slideEvt) {
+		$('#day-num').text(slideEvt.value);
 	});
 	// $("#day-slider").on("formatter", function(slideEvt) {
 	// 	$("#day-num").text(slideEvt.value);
