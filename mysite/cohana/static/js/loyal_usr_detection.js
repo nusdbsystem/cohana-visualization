@@ -86,15 +86,59 @@ $(document).ready(function () {
 
   loyaltyStack.setOption(loyaltyStack_option);
 
-	$('#event-slider').slider({value:3});
-	$('#event-slider').on('slide', function(slideEvt) {
-		$('#event-num').text(slideEvt.value);
-	});	
-	$('#day-slider').slider({value:3});
-	$('#day-slider').on('slide', function(slideEvt) {
-		$('#day-num').text(slideEvt.value);
-	});
-	// $("#day-slider").on("formatter", function(slideEvt) {
-	// 	$("#day-num").text(slideEvt.value);
-	// });
+    $("#event-num").popover({
+    placement:"bottom", 
+    trigger:'focus',
+    html: true,
+    title:"Select # of events",
+    content: '<div id="rangeslider1"> \
+            <input data-slider-id="eventslider"  \
+            id="event-slider"\
+            type="text"\
+            data-slider-min="1"\
+            data-slider-max="20"\
+            data-slider-step="1"\
+            data-slider-value="3"\
+            data-slider-tooltip="hide"/>\
+        </div>',
+    template: '<div class="popover" style="margin-left:-30px; width:inherit; height:inherit" role="tooltip">\
+    <div class="arrow"></div><h3 class="popover-title"></h3><div class="popover-content"></div></div>'
+    })
+    var e_slider;
+    $("#event-num").click(function(e){
+        var value = $('#event-num').data("value")
+        $('#event-slider').slider({value:value||3});
+        $('#event-slider').on('slide', function(slideEvt) {
+            $('#event-num').text(slideEvt.value);
+            $("#event-num").data("value", slideEvt.value)
+        }); 
+    });
+
+    $("#day-num").popover({
+    placement:"bottom", 
+    trigger:'focus',
+    html: true,
+    title:"Select # of events",
+    content: '<div id="rangeslider2"> \
+            <input data-slider-id="eventslider"  \
+            id="day-slider"\
+            type="text"\
+            data-slider-min="1"\
+            data-slider-max="32"\
+            data-slider-step="1"\
+            data-slider-value="7"\
+            data-slider-tooltip="hide"/>\
+        </div>',
+    template: '<div class="popover" style="margin-left:-30px; width:inherit; height:inherit" role="tooltip">\
+    <div class="arrow"></div><h3 class="popover-title"></h3><div class="popover-content"></div></div>'
+    })
+    var d_slider;
+    $("#day-num").click(function(e){
+        var value = $('#day-num').data("value")
+        $('#day-slider').slider({value: value||7});
+        $('#day-slider').on('slide', function(slideEvt) {
+            $('#day-num').text(slideEvt.value);
+            $("#day-num").data("value", slideEvt.value)
+        }); 
+    });
 });
