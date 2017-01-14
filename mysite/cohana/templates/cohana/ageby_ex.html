@@ -1,0 +1,24 @@
+{% extends 'cohana/base.html' %}
+{% load static %}
+
+{% block main_content %}
+
+<div class="row">
+    <div id="panel_role" class="panel panel-default panel-container" >
+        <div class="panel-heading">
+            <h3> AgeBy Operation Example </h3>
+        </div>
+        <div class="panel-body">
+            <div id="agebyexchart" style="height: 600px;" class="chartpanel" >  </div>
+        </div> 
+    </div>
+</div>
+
+{% endblock %}
+
+{% block custom_js %}
+<script>
+    var series_data = {{ series|safe }}
+</script>
+<script src="{% static 'js/ageby_ex.js' %}"></script>
+{% endblock %}
