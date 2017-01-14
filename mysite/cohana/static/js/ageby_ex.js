@@ -18,29 +18,36 @@ $(function(){
         right: '3%',
         data: legend_data
     },
-    toolbox: {
+    toolbox:{
+        show:true,
         left: '1%',
         top: '1%',
         feature: {
-           restore:{
+            restore:{
                 title: 'Restore'
             },
-            dataView: {
-                title: 'DataView',
-                lang: ['DataView', 'Close', 'Refresh']
-            },
-            
             saveAsImage:{
                 title: 'Save'
             },
-            magicType: {
-                show:true,
-                type: ['stack', 'bar'],
-                title: {
-                    'stack' : 'Change to Line Chart',
-                    'bar' : 'Change to Bar Chart'
+            dataView: {
+                title: 'Dataview',
+                lang: ['DataView', 'Close', 'Refresh']
+            },
+            dataZoom: {
+                yAxisIndex: 'none',
+                title:
+                {
+                    zoom: 'Zoom',
+                    back: 'Back'
                 }
             },
+            magicType: {
+                type: ['bar', 'line'],
+                title: {
+                    'bar' : 'Change To Bar Chart',
+                    'line' : 'Change To Line Chart'
+                }
+            }
         }
     },
     xAxis: [{
@@ -53,7 +60,8 @@ $(function(){
         data:[{
             textStyle:{
                 align: 'center'
-        }}]
+            }
+        }]
     }],
     series: series_data
   }
