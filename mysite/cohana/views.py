@@ -4,9 +4,11 @@ from django.http import JsonResponse
 from django.conf import settings
 import json
 import os
+import sys
 from .utils.request_bypass import *
 from .utils.correlation_details import correlation_details
 from .utils.correlation_overview import correlation_overview
+from .utils.ageby import get_series
 
 # Create your views here.
 from .models import MonthlyWeatherByCity
@@ -218,3 +220,7 @@ def loyal_usr_detection(request):
                 'loyaltyStackXlabel':json.dumps(eventStackLegend),
                 'loyaltyStackData':json.dumps(eventStackData)
             })
+
+def ageby_view(request):
+    return render(request, 'cohana/ageby_ex.html',
+                  {'series': json.dumps(ageby.get_series())})
