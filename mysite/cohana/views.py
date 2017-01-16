@@ -205,21 +205,33 @@ def outerchart(request):
     return JsonResponse(correlation_overview.correlation_overview());
 
 def loyal_usr_detection(request):    
-    # deal with sessionSca chart
-    rawData = {}
 
-    with open('cohana/data/eventByDay.json') as data_file:
-        rawData = json.load(data_file)
-    loyaltyStackLegend = rawData['label'] 
-    eventStackLegend = rawData['legend'] 
-    eventStackData = rawData['data']
+    return render(request, 'cohana/loyal_usr_detection.html')
 
-    return render(request, 'cohana/loyal_usr_detection.html',
-            {
-                'loyaltyStackLegend':json.dumps(loyaltyStackLegend),
-                'loyaltyStackXlabel':json.dumps(eventStackLegend),
-                'loyaltyStackData':json.dumps(eventStackData)
-            })
+def get_loyal_retention(request):
+    if request.method == 'POST':
+        return 0
+
+    ret = {}
+    removeCohort("loyal")
+    with open(settings.BASE_DIR+'/cohana/queries/loyalcreate.json') as f:
+        query = json.load(f)
+    query[u'birthSequence'][u'birthEvents'][0][u'minTrigger'] = request.GET.get('events', default = 3) 
+    query[u'birthSequence'][u'birthEvents'][0][u'timeWindow'][u'length'] = request.GET.get('time', default = 7) 
+    result = pass_create_request(query)
+
+    if result[u'status'] != u'OK':
+        print "cohort exists!" 
+
+    with open(settings.BASE_DIR+'/cohana/queries/loyal.json') as f:
+        query = json.load(f)
+    result = pass_request(query)
+    data = get_plotdata_linechart(result)
+
+    ret['loyaltyRetentionData']=data['Data']
+
+    return JsonResponse(ret)        
+
 
 def ageby_view(request):
     return render(request, 'cohana/ageby_ex.html',

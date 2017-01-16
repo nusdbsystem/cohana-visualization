@@ -18,11 +18,38 @@
                     <button id="day-num" data-toggle="popover" 
                         href="#rangeslider2" data-parent="#accordion"
                         class="btn">7</button> 
-                    days</h4>
+                    days
+                    <button id="detect" class="btn btn-primary submit"> Detect </button>
+                </h4>
             </div>
-            <div id="loyal_usr_stack" class="chartpanel" >  </div>
         </div> 
     </div>
+</div>
+
+<div class="row loyalcharts">
+    <div class="col-md-6">
+        <div id="panel_loyal_retention" class="panel panel-default
+            panel-container">
+            <div class="panel-heading">
+                <h4> The retention of Loyal Users </h4>
+            </div>
+            <div class="panel-body">
+                <div id="loyal_user_retention" class="chartpanel" >  </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-6">
+        <div id="panel_loyal_retention2" class="panel panel-default
+            panel-container">
+            <div class="panel-heading">
+                <h4> The retention of Loyal Users 2</h4>
+            </div>
+            <div class="panel-body">
+                <div id="loyal_user_retention2" class="chartpanel" >  </div>
+            </div>
+        </div>
+    </div>
+
 </div>
 
 {% endblock %}
@@ -31,9 +58,7 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-slider/9.7.0/bootstrap-slider.js"></script>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-slider/9.7.0/css/bootstrap-slider.css">
 <script>
-    var loyaltyStack_legend = {{ loyaltyStackLegend|safe }}
-    var loyaltyStack_xlabel = {{ loyaltyStackXlabel|safe }}
-    var loyaltyStack_data = {{ loyaltyStackData|safe }}
+    var loyaltyRetention_data = {{ loyaltyRetentionData|safe }}
 </script>
 <script src="{% static 'js/loyal_usr_detection.js' %}">
 </script>
