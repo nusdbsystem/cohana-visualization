@@ -45,6 +45,10 @@ $(document).ready(function () {
                 }
             }        }
     },
+    grid: {
+      left: 'left',
+      containLabel: true
+    },
     xAxis: {
         type: 'category',
         boundaryGap: false,
@@ -108,6 +112,10 @@ $(document).ready(function () {
                     'line' : 'Change To Line Chart'
                 }
             }        }
+    },
+    grid: {
+      left: 'left',
+      containLabel: true
     },
     xAxis: {
         type: 'category',
@@ -205,6 +213,10 @@ $(document).ready(function () {
                   };
               });
 
+              newOption.grid= {
+                left: 'left',
+                containLabel: true
+              };
               newOption.xAxis = {
                   type: 'category',
                   data: bar_category,

@@ -24,6 +24,10 @@ $(document).ready(function () {
                   };
               });
 
+              newOption.grid = {
+                left: 'left',
+                containLabel: true
+              };
               newOption.xAxis = {
                   type: 'category',
                   data: bar_category,

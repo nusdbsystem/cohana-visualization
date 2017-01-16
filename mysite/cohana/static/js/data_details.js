@@ -115,6 +115,10 @@ $(document).ready(function () {
                 }
             }        }
     },
+    grid: {
+      left: 'left',
+      containLabel: true
+    },
     xAxis: {
         type: 'category',
         boundaryGap: false,
@@ -139,6 +143,10 @@ $(document).ready(function () {
         top: '3%',
         right: '3%',
         data: sessionSca_legend 
+    },
+    grid: {
+      left: 'left',
+      containLabel: true
     },
     xAxis: {
         splitLine: {
@@ -276,6 +284,10 @@ $(document).ready(function () {
             } 
             },
         }
+    },
+    grid: {
+      left: 'left',
+      containLabel: true
     },
     xAxis : [
         {
