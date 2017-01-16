@@ -41,6 +41,10 @@ $(document).ready(function () {
                 }
             }        }
     },
+    grid: {
+      left: 'left',
+      containLabel: true
+    },
     xAxis: {
         max: 30,
         type: 'value'
