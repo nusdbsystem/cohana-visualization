@@ -236,3 +236,6 @@ def get_loyal_retention(request):
 def ageby_view(request):
     return render(request, 'cohana/ageby_ex.html',
                   {'series': json.dumps(ageby.get_series())})
+
+def timeline_view(request):
+    return render(request, 'cohana/timeline_ex.html')

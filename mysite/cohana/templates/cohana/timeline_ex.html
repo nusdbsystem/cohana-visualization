@@ -1,0 +1,247 @@
+{% extends 'cohana/base.html' %}
+{% load static %}
+
+{% block custom_css %}
+<link href="{% static 'css/timeline.css' %}" rel="stylesheet">
+{% endblock %}
+
+{% block main_content %}
+
+<div class="container">
+  <div class="row">
+    <div id="panel_timeline" class="panel panel-default panel-container">
+      <div class="panel-heading">
+        <h3> User Timeline Example </h3>
+      </div>
+      <div class="col-md-4"> </div>
+      <div id="canvas_timeline" class="col-md-4">
+        <div class="panel-body">
+
+          <div class="qa-message-list" id="wallmessages">
+            <div class="message-item" id="m16">
+              <div class="message-inner">
+                <div class="message-head clearfix">
+                  <div class="user-detail">
+                    <h5 class="handle">launch</h5>
+                    <div class="post-meta">
+                      <div class="asker-meta">
+                        <span class="qa-message-what"></span>
+                        <span class="qa-message-when">
+                          <span class="qa-message-when-data">2013-05-20, Australia, Sydney</span>
+                        </span>
+                        <span class="qa-message-who">
+                          <span class="qa-message-who-pad">role: </span>
+                          <span class="qa-message-who-data">stonegolem</span>
+                        </span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+            </div></div>
+
+            <div class="message-item" id="m9">
+              <div class="message-inner">
+                <div class="message-head clearfix">
+                  <div class="user-detail">
+                    <h5 class="handle">fight</h5>
+                    <div class="post-meta">
+                      <div class="asker-meta">
+                        <span class="qa-message-what"></span>
+                        <span class="qa-message-when">
+                          <span class="qa-message-when-data">2013-05-20, Australia, Sydney</span>
+                        </span>
+                        <span class="qa-message-who">
+                          <span class="qa-message-who-pad">role: </span>
+                          <span class="qa-message-who-data">stonegolem</span>
+                        </span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+            </div></div>
+
+            <div class="message-item" id="m7">
+              <div class="message-inner">
+                <div class="message-head clearfix">
+                  <div class="user-detail">
+                    <h5 class="handle">fight</h5>
+                    <div class="post-meta">
+                      <div class="asker-meta">
+                        <span class="qa-message-what"></span>
+                        <span class="qa-message-when">
+                          <span class="qa-message-when-data">2013-05-21, Australia, Sydney</span>
+                        </span>
+                        <span class="qa-message-who">
+                          <span class="qa-message-who-pad">role: </span>
+                          <span class="qa-message-who-data">stonegolem</span>
+                        </span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+            </div></div>
+
+            <div class="message-item" id="m6">
+              <div class="message-inner">
+                <div class="message-head clearfix">
+                  <div class="user-detail">
+                    <h5 class="handle">fight</h5>
+                    <div class="post-meta">
+                      <div class="asker-meta">
+                        <span class="qa-message-what"></span>
+                        <span class="qa-message-when">
+                          <span class="qa-message-when-data">2013-05-21, Australia, Sydney</span>
+                        </span>
+                        <span class="qa-message-who">
+                          <span class="qa-message-who-pad">role: </span>
+                          <span class="qa-message-who-data">stonegolem</span>
+                        </span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+            </div></div>
+
+            <div class="message-item" id="m5">
+              <div class="message-inner">
+                <div class="message-head clearfix">
+                  <div class="user-detail">
+                    <h5 class="handle">fight</h5>
+                    <div class="post-meta">
+                      <div class="asker-meta">
+                        <span class="qa-message-what"></span>
+                        <span class="qa-message-when">
+                          <span class="qa-message-when-data">2013-05-21, Australia, Sydney</span>
+                        </span>
+                        <span class="qa-message-who">
+                          <span class="qa-message-who-pad">role: </span>
+                          <span class="qa-message-who-data">stonegolem</span>
+                        </span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+            </div></div>
+
+            <div class="message-item" id="m4">
+              <div class="message-inner">
+                <div class="message-head clearfix">
+                  <div class="user-detail">
+                    <h5 class="handle">fight</h5>
+                    <div class="post-meta">
+                      <div class="asker-meta">
+                        <span class="qa-message-what"></span>
+                        <span class="qa-message-when">
+                          <span class="qa-message-when-data">2013-05-21, Australia, Sydney</span>
+                        </span>
+                        <span class="qa-message-who">
+                          <span class="qa-message-who-pad">role: </span>
+                          <span class="qa-message-who-data">stonegolem</span>
+                        </span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+            </div></div>
+
+            <div class="message-item" id="m3">
+              <div class="message-inner">
+                <div class="message-head clearfix">
+                  <div class="user-detail">
+                    <h5 class="handle">dungeon</h5>
+                    <div class="post-meta">
+                      <div class="asker-meta">
+                        <span class="qa-message-what"></span>
+                        <span class="qa-message-when">
+                          <span class="qa-message-when-data">2013-05-21, Australia, Sydney</span>
+                        </span>
+                        <span class="qa-message-who">
+                          <span class="qa-message-who-pad">role: </span>
+                          <span class="qa-message-who-data">stonegolem</span>
+                        </span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+            </div></div>
+
+            <div class="message-item" id="m2">
+              <div class="message-inner">
+                <div class="message-head clearfix">
+                  <div class="user-detail">
+                    <h5 class="handle">dungeonstats</h5>
+                    <div class="post-meta">
+                      <div class="asker-meta">
+                        <span class="qa-message-what"></span>
+                        <span class="qa-message-when">
+                          <span class="qa-message-when-data">2013-05-21, Australia, Sydney</span>
+                        </span>
+                        <span class="qa-message-who">
+                          <span class="qa-message-who-pad">role: </span>
+                          <span class="qa-message-who-data">stonegolem</span>
+                        </span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+            </div></div>
+
+            <div class="message-item" id="m1">
+              <div class="message-inner">
+                <div class="message-head clearfix">
+                  <div class="user-detail">
+                    <h5 class="handle">dungeonstats</h5>
+                    <div class="post-meta">
+                      <div class="asker-meta">
+                        <span class="qa-message-what"></span>
+                        <span class="qa-message-when">
+                          <span class="qa-message-when-data">2013-05-21, Australia, Sydney</span>
+                        </span>
+                        <span class="qa-message-who">
+                          <span class="qa-message-who-pad">role: </span>
+                          <span class="qa-message-who-data">stonegolem</span>
+                        </span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="message-item" id="m0">
+              <div class="message-inner">
+                <div class="message-head clearfix">
+                  <div class="user-detail">
+                    <h5 class="handle">inventory</h5>
+                    <div class="post-meta">
+                      <div class="asker-meta">
+                        <span class="qa-message-what"></span>
+                        <span class="qa-message-when">
+                          <span class="qa-message-when-data">2013-05-21, Australia, Sydney</span>
+                        </span>
+                        <span class="qa-message-who">
+                          <span class="qa-message-who-pad">role: </span>
+                          <span class="qa-message-who-data">stonegolem</span>
+                        </span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div> 
+    </div>
+  </div>
+</div>
+
+{% endblock %}
+
+{% block custom_js %}
+<script>
+  var series_data = {{ series|safe }}
+</script>
+<script src="{% static 'js/ageby_ex.js' %}"></script>
+{% endblock %}
