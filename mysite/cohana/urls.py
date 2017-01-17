@@ -13,6 +13,7 @@ urlpatterns = [
 	url(r'^sample/loyalty$', views.loyal_usr_detection, name='loyalty'),
 	url(r'^sample/loyaltyquery$', views.get_loyal_retention, name='loyaltyq'),
 	url(r'^sample/ageby$', views.ageby_view, name='ageby'),
+	url(r'^sample/timeline$', views.timeline_view, name='timeline'),
 	url(r'innerchart$', views.innerchart, name='innerchart'),
 	url(r'outerchart$', views.outerchart, name='outerchart'),
 ]
